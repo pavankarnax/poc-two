@@ -1,0 +1,27 @@
+name: CI/CD Pipeline
+
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        displayName: Build
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script: |
+              # Add build steps here
+              echo "Building the application"
+            displayName: 'Build Application'
+
+  - stage: Deploy
+    dependsOn: Build
+    jobs:
+      - job: DeployJob
+        displayName: Deploy
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script: |
+              # Add deployment steps here
+              echo "Deploying the application"
+            displayName: 'Deploy Application'
